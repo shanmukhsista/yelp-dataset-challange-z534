@@ -1,4 +1,4 @@
-package dao;
+package main.java.dao;
 
 import com.mongodb.DB;
 import com.mongodb.DBCollection;
