@@ -27,7 +27,6 @@
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="YelpChallange" target="1.5" />
-      <module name="YelpChallenge" target="1.5" />
     </bytecodeTargetLevel>
   </component>
 </project>
