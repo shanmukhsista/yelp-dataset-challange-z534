@@ -1,6 +1,6 @@
 package core;
 
-import com.shanmukhsista.exceptions.SparkPropertyNotConfiguredException;
+import exceptions.SparkPropertyNotConfiguredException;
 import org.apache.spark.SparkConf;
 import org.apache.spark.SparkContext;
 import org.apache.spark.api.java.JavaSparkContext;
@@ -12,10 +12,10 @@ import java.util.Iterator;
  * Created by shanmukh on 11/1/15.
  */
 public class SparkManager   implements Serializable {
-    private JavaSparkContext sc ;
-    private SparkConf conf;
-    SparkConfigProperties appProperties ;
     public static SparkManager sm = new SparkManager();
+    SparkConfigProperties appProperties ;
+    private JavaSparkContext sc;
+    private SparkConf conf;
 
     private SparkManager() {
         try{
@@ -32,6 +32,11 @@ public class SparkManager   implements Serializable {
         }
 
     }
+
+    public static SparkManager getInstance() throws Exception {
+        return sm;
+    }
+
     /**
      * Returns a Spark Context object by instantiating one.
      * <p>
@@ -47,6 +52,7 @@ public class SparkManager   implements Serializable {
         }
         return sc ;
     }
+
     private SparkConf AssignPropertiesToConfig(SparkConf sconf) throws SparkPropertyNotConfiguredException{
         Iterator<String> properties = appProperties.getPropertyKeysIterator();
         while ( properties.hasNext()){
@@ -55,13 +61,11 @@ public class SparkManager   implements Serializable {
         }
         return sconf;
     }
+
     private void loadPropertiesConfig() throws Exception{
         if (appProperties == null){
             appProperties = new SparkConfigProperties();
             appProperties.loadProperties();
         }
-    }
-    public static SparkManager getInstance() throws Exception{
-        return sm;
     }
 }
