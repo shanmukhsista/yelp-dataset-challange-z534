@@ -22,11 +22,12 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="true" />
-        <module name="YelpChallange" />
+        <module name="YelpChallenge" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="YelpChallange" target="1.5" />
+      <module name="YelpChallenge" target="1.5" />
     </bytecodeTargetLevel>
   </component>
 </project>
