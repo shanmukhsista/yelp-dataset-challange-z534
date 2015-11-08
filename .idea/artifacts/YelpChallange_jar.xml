@@ -3,7 +3,7 @@
     <output-path>$PROJECT_DIR$/out/artifacts/YelpChallange_jar</output-path>
     <root id="root">
       <element id="archive" name="YelpChallange.jar">
-        <element id="module-output" name="YelpChallange" />
+        <element id="module-output" name="YelpChallenge" />
       </element>
       <element id="library" level="project" name="Maven: org.mongodb:mongo-java-driver:2.10.1" />
     </root>

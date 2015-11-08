@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/YelpChallange.iml" filepath="$PROJECT_DIR$/YelpChallange.iml" />
+      <module fileurl="file://$PROJECT_DIR$/YelpChallenge.iml" filepath="$PROJECT_DIR$/YelpChallenge.iml" />
     </modules>
   </component>
 </project>
