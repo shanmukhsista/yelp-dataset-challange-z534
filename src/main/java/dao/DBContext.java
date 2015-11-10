@@ -2,7 +2,9 @@ package main.java.dao;
 
 import com.mongodb.DB;
 import com.mongodb.DBCollection;
+import com.mongodb.DBObject;
 import com.mongodb.MongoClient;
+import main.java.models.Tables;
 
 import java.net.UnknownHostException;
 
@@ -31,8 +33,23 @@ public class DBContext {
         return this.db;
     }
 
-    public DBCollection getCollection(String collectionName) {
+    public DBCollection getCollection(Tables collectionName) {
         //Gets the collection object for the specified name
-        return db.getCollection(collectionName);
+        switch (collectionName) {
+
+            case BUSINESS:
+                return db.getCollection("business");
+            case CHECKIN:
+                return db.getCollection("checkin");
+            case REVIEW:
+                return db.getCollection("review");
+            case TIP:
+                return db.getCollection("tip");
+            case USER:
+                return db.getCollection("user");
+
+        }
+
+        return null;
     }
 }
