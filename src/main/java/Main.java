@@ -15,7 +15,8 @@ import java.net.UnknownHostException;
 public class Main {
     public static void main(String[] args) throws UnknownHostException {
         System.out.println("===Indexing==");
-        GenerateLuceneIndex gen = new GenerateLuceneIndex(Tables.USER);
+        GenerateLuceneIndex gen = new GenerateLuceneIndex(Tables.REVIEW);
+        gen = new GenerateLuceneIndex(Tables.TIP);
 
     }
 }

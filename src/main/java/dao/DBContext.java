@@ -1,9 +1,6 @@
 package main.java.dao;
 
-import com.mongodb.DB;
-import com.mongodb.DBCollection;
-import com.mongodb.DBObject;
-import com.mongodb.MongoClient;
+import com.mongodb.*;
 import main.java.models.Tables;
 
 import java.net.UnknownHostException;
@@ -48,6 +45,31 @@ public class DBContext {
             case USER:
                 return db.getCollection("user");
 
+        }
+
+        return null;
+    }
+
+    public BasicDBObject getReviewForCollection(Tables collectionName, String key) {
+        //Gets the collection object for the specified name
+        BasicDBObject whereQuery = new BasicDBObject();
+        switch (collectionName) {
+
+            case BUSINESS:
+                whereQuery.put("business_id", key);
+                return whereQuery;
+            case CHECKIN:
+                whereQuery.put("business_id", key);
+                return whereQuery;
+            case REVIEW:
+                whereQuery.put("business_id", key);
+                return whereQuery;
+            case TIP:
+                whereQuery.put("business_id", key);
+                return whereQuery;
+            case USER:
+                whereQuery.put("business_id", key);
+                return whereQuery;
         }
 
         return null;
