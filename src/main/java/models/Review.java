@@ -1,4 +1,4 @@
-package models;
+package main.java.models;
 
 /**
  * Created by vivek on 11/8/15.
@@ -66,5 +66,17 @@ public class Review {
 
     public void setBusiness_id(String business_id) {
         this.business_id = business_id;
+    }
+
+    @Override
+    public String toString() {
+        //Print a review
+        StringBuilder sb = new StringBuilder();
+        sb.append("****Review ID : " + this.review_id + "****\n");
+        sb.append("Business : " + this.business_id + "\n");
+        sb.append("Stars : " + this.stars + "\n");
+        sb.append("Review Text " + this.text_review + "\n");
+        sb.append("By User : " + this.user_id);
+        return sb.toString();
     }
 }

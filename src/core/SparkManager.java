@@ -26,6 +26,7 @@ public class SparkManager   implements Serializable {
             if ( conf == null){
                 conf = new SparkConf(true);
                 conf = this.AssignPropertiesToConfig(conf);
+                conf.set("spark.driver.allowMultipleContexts", "true");
             }
         }catch (Exception e){
             System.out.println(e.getMessage());

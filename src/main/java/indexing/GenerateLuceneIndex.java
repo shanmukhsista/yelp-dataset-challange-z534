@@ -145,6 +145,7 @@ public class GenerateLuceneIndex {
 
             writer.addDocument(lDoc);
         }
+
     }
 
 

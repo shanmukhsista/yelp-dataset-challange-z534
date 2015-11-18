@@ -16,7 +16,7 @@ public class DBContext {
     private DBContext() {
         try {
             mongo = new MongoClient("localhost", 27017);
-            db = mongo.getDB("yelp_challange");
+            db = mongo.getDB("yelp_challenge");
         } catch (Exception e) {
             e.printStackTrace();
         }
