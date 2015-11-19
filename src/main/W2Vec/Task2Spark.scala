@@ -47,16 +47,16 @@ object Task2Spark extends Serializable {
   def main(args: Array[String]) {
     val userid = Array("Hh1ogFYydigptYvHeqyAog");
     var finalUserIds: Array[String] = Array.empty[String];
-    //var friendsList = generateFriendsToLearn(userid,finalUserIds  , 1, 0);
-    //generateDataFrameForUsers(friendsList)
-    getReviews();
+    var friendsList = generateFriendsToLearn(userid, finalUserIds, 1, 0);
+    generateDataFrameForUsers(friendsList)
+    //getReviews();
   }
 
   def getReviews() = {
     print(pm.getPropertyValue("reviewsfile"));
     var df: DataFrame = null
     System.out.println("Read json from " + pm.getPropertyValue("jsondir") + pm.getPropertyValue("reviewsfile"))
-    df = sqlContext.read.json(pm.getPropertyValue("jsondir") + pm.getPropertyValue("reviewsfile")).limit(10)
+    df = sqlContext.read.json(pm.getPropertyValue("jsondir") + pm.getPropertyValue("reviewsfile"))
     val reviewsSubset = df;
     val wordvec = new Word2Vec();
     val revRdd = reviewsSubset.rdd
@@ -86,7 +86,6 @@ object Task2Spark extends Serializable {
       .setOutputCol("tokenized_text")
     val broadcastVar = sc.broadcast(model);
     val finalRevviews = srem.setInputCol("tokenized_text").setOutputCol("final_col").transform(tokenizer.transform(reviewsSubset));
-    finalRevviews.show(10);
     val reviewsVectorRDD = finalRevviews.map(row => {
       val localModel = broadcastVar.value;
       val tokens = row.getList[String](9);
@@ -154,8 +153,10 @@ object Task2Spark extends Serializable {
     val userIdString = users.mkString("','")
     val usersDataframe = sqlContext.read.json(pm.getPropertyValue("jsondir") + pm.getPropertyValue("usersfile")).filter("user_id in ('" + userIdString + "')");
     val reviewsDataFrame = sqlContext.read.json(pm.getPropertyValue("jsondir") + pm.getPropertyValue("reviewsfile")).filter("user_id in ('" + userIdString + "')");
-    reviewsDataFrame.join(usersDataframe, usersDataframe("user_id") === reviewsDataFrame("user_id")).show(20);
-
+    val reviewVectorsFrame = sqlContext.read.json("reviewsvector.json");
+    reviewVectorsFrame.printSchema();
+    reviewsDataFrame.join(usersDataframe, usersDataframe("user_id") === reviewsDataFrame("user_id")).join(reviewVectorsFrame, reviewsDataFrame("review_id") === reviewVectorsFrame("_1")).show(20);
+    //Read the reviewsVector json and join to the above table.
     //    usersDataframe.map(row => {
     //       //business_id - 0
     //      //review_id - 2
