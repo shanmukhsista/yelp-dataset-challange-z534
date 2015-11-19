@@ -3,7 +3,7 @@ package main.java.models.ml;
 /**
  * Created by shanmukh on 11/12/15.
  */
-public class UserVector {
+public class UserReviewVector {
     long yelpingSince;
     int funnyVoteCount;
     int useFulVoteCount;
@@ -19,5 +19,6 @@ public class UserVector {
     //Rading
     double textVector;
     String textReview;
-    String businessID;
+
+
 }

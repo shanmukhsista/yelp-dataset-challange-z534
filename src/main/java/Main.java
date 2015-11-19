@@ -1,16 +1,7 @@
 package main.java;
-import com.mongodb.DB;
-import com.mongodb.DBCollection;
-import com.mongodb.DBCursor;
-import com.mongodb.DBObject;
-import gate.wordnet.Word;
-import main.Task2;
-import main.W2Vec.WordToVec;
-import main.java.indexing.GenerateLuceneIndex;
-import main.java.models.Tables;
 
-import java.io.OutputStream;
-import java.io.PrintWriter;
+import main.W2Vec.Task2Spark;
+
 import java.net.UnknownHostException;
 
 import org.apache.commons.cli.*;
@@ -31,7 +22,7 @@ public class Main {
             commandLine = clip.parse(ops, args);
             if (commandLine.getOptions().length == 0) {
                 //WordToVec.generateDistributedLuceneIndex();
-                Task2.main(null);
+                Task2Spark.main(null);
             }
             if (commandLine.hasOption("task1")) {
                 System.out.println("Executing Task 1...");
@@ -41,7 +32,7 @@ public class Main {
             if (commandLine.hasOption("task2")) {
                 System.out.println("Executing task 2");
                 //WordToVec.main(null);
-                WordToVec.generateDistributedLuceneIndex();
+                Task2Spark.generateDistributedLuceneIndex();
                 System.out.println("Done ! ");
             }
         } catch (Exception e) {
