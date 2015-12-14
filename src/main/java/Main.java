@@ -22,7 +22,7 @@ public class Main {
             commandLine = clip.parse(ops, args);
             if (commandLine.getOptions().length == 0) {
                 //WordToVec.generateDistributedLuceneIndex();
-                Task2Spark.main(null);
+                Task1.run();
             }
             if (commandLine.hasOption("task1")) {
                 System.out.println("Executing Task 1...");
